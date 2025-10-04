@@ -1,12 +1,17 @@
 --
 -- NoKore - Mapgen Decoration - Corals
 --
-foundation.new_module("nokore_mapgen_decor_corals", "0.1.0")
+local mod = foundation.new_module("nokore_mapgen_decor_corals", "0.1.0")
+
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
 
 if nokore_mapgen.is_singlenode then
 else
-  minetest.register_decoration({
-    name = "nokore_mapgen_decor_corals:corals",
+  core.register_decoration({
+    name = mod:make_name("corals"),
     deco_type = "simple",
     place_on = {
       "nokore_world_standard:sand"

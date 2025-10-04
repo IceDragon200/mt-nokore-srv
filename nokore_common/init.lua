@@ -7,6 +7,18 @@ local mod = foundation.new_module("nokore_common", "1.0.0")
 --- @namespace nokore
 nokore = rawget(_G, "nokore") or {}
 
+if not nokore.game_id then
+  core.log("warning", "detecting game environment, if this is incorrect, please create a nokore_prelude with nokore.game_id set to your appropriate game value: (default, hsw)")
+  -- let's try to determine what environment we're running in, normally this won't need to be
+  -- done for games like HSW, or the F7 modpack.
+  if core.get_modpath("default") then
+    -- So it's minetest game, no, we're not gonna "confirm" that, we'll take it for granted
+    -- default typically ain't outside MTG.
+    nokore.game_id = "default"
+    core.log("warning", "detected default mod, assuming MTG environment game_id=default")
+  end
+end
+
 if nokore.make_tool_cap_times and nokore.make_tool_capability and nokore.dig_class then
   -- nothing to do here
   core.log("info", "nokore utility functions are present, skipping patches")

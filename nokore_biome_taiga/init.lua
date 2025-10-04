@@ -4,7 +4,12 @@
 -- This module adds the taiga biome(s)
 foundation.new_module("nokore_biome_taiga", "0.1.0")
 
-minetest.register_biome({
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
+core.register_biome({
   name = "taiga",
   node_dust = "nokore_world_snow:snow",
   node_top = "nokore_world_snow:dirt_with_snow",
@@ -23,7 +28,7 @@ minetest.register_biome({
 })
 
 if foundation.is_module_present("nokore_world_water") then
-  minetest.register_biome({
+  core.register_biome({
     name = "taiga_ocean",
     node_dust = "nokore_world_snow:snow",
     node_top = "nokore_world_standard:sand",
@@ -46,7 +51,7 @@ end
 
 if foundation.is_module_present("nokore_world_water") and
    foundation.is_module_present("nokore_world_lava") then
-  minetest.register_biome({
+  core.register_biome({
     name = "taiga_under",
     node_cave_liquid = {
       "nokore_world_water:fresh_water_source",

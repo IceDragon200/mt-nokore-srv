@@ -4,7 +4,12 @@
 -- This module adds the deciduous forest biome(s)
 foundation.new_module("nokore_biome_deciduous_forest", "0.1.0")
 
-minetest.register_biome({
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
+core.register_biome({
   name = "deciduous_forest",
   node_top = "nokore_world_standard:dirt_with_grass",
   depth_top = 1,
@@ -21,7 +26,7 @@ minetest.register_biome({
   humidity_point = 68,
 })
 
-minetest.register_biome({
+core.register_biome({
   name = "deciduous_forest_shore",
   node_top = "nokore_world_standard:dirt",
   depth_top = 1,
@@ -39,7 +44,7 @@ minetest.register_biome({
 })
 
 if foundation.is_module_present("nokore_world_water") then
-  minetest.register_biome({
+  core.register_biome({
     name = "deciduous_forest_ocean",
     node_top = "nokore_world_standard:sand",
     depth_top = 1,
@@ -61,7 +66,7 @@ end
 
 if foundation.is_module_present("nokore_world_water") and
    foundation.is_module_present("nokore_world_lava") then
-  minetest.register_biome({
+  core.register_biome({
     name = "deciduous_forest_under",
     node_cave_liquid = {
       "nokore_world_standard:fresh_water_source",

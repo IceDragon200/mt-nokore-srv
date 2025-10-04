@@ -3,8 +3,13 @@
 --
 foundation.new_module("nokore_mapgen_decor_flower", "0.1.0")
 
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
 local function register_flower(name, seed)
-  minetest.register_decoration({
+  core.register_decoration({
     name = name,
     deco_type = "simple",
     place_on = {"nokore_world_standard:dirt_with_grass"},

@@ -4,9 +4,14 @@
 -- For general mapgen related changes with sand
 foundation.new_module("nokore_mapgen_sand", "0.1.0")
 
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
 -- Silver sandstone
 
-minetest.register_ore({
+core.register_ore({
   ore_type        = "stratum",
   ore             = "nokore_world_standard:silver_sandstone",
   wherein         = {"nokore_world_standard:stone"},
@@ -24,7 +29,7 @@ minetest.register_ore({
   biomes = {"cold_desert"},
 })
 
-minetest.register_ore({
+core.register_ore({
   ore_type        = "stratum",
   ore             = "nokore_world_standard:silver_sandstone",
   wherein         = {"nokore_world_standard:stone"},
@@ -43,7 +48,7 @@ minetest.register_ore({
 })
 
 -- Desert Sandstone
-minetest.register_ore({
+core.register_ore({
   ore_type        = "stratum",
   ore             = "nokore_world_standard:desert_sandstone",
   wherein         = {"nokore_world_standard:desert_stone"},
@@ -61,7 +66,7 @@ minetest.register_ore({
   biomes = {"desert"},
 })
 
-minetest.register_ore({
+core.register_ore({
   ore_type        = "stratum",
   ore             = "nokore_world_standard:desert_sandstone",
   wherein         = {"nokore_world_standard:desert_stone"},
@@ -81,7 +86,7 @@ minetest.register_ore({
 
 -- Sandstone
 
-minetest.register_ore({
+core.register_ore({
   ore_type        = "stratum",
   ore             = "nokore_world_standard:sandstone",
   wherein         = {"nokore_world_standard:desert_stone"},
@@ -103,7 +108,7 @@ minetest.register_ore({
 -- Blob Ore
 --
 
-minetest.register_ore({
+core.register_ore({
   ore_type        = "blob",
   ore             = "nokore_world_standard:silver_sand",
   wherein         = {"nokore_world_standard:stone"},

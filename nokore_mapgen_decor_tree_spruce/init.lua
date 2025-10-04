@@ -3,12 +3,17 @@
 --
 local mod = foundation.new_module("nokore_mapgen_decor_tree_spruce", "0.1.0")
 
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
 --dofile(mod.modpath .. "/schematics.lua")
 
 local seed = nokore_mapgen.tree_seed
 
 if nokore_mapgen.enable_trees then
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_tree_spruce:large_spruce_tree",
     deco_type = "schematic",
     place_on = {
@@ -34,7 +39,7 @@ if nokore_mapgen.enable_trees then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_tree_spruce:tall_spruce_tree",
     deco_type = "schematic",
     place_on = {
@@ -58,7 +63,7 @@ if nokore_mapgen.enable_trees then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_tree_spruce:spruce_tree",
     deco_type = "schematic",
     place_on = {
@@ -82,7 +87,7 @@ if nokore_mapgen.enable_trees then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_tree_spruce:small_spruce_tree",
     deco_type = "schematic",
     place_on = {

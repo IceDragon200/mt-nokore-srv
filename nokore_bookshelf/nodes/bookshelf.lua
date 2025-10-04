@@ -1,4 +1,4 @@
-local mod = nokore_bookshelf
+local mod = assert(nokore_bookshelf)
 
 mod:register_node("bookshelf", {
   description = "Bookshelf",

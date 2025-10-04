@@ -3,12 +3,17 @@
 --
 local mod = foundation.new_module("nokore_mapgen_decor_tree_birch", "0.1.0")
 
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
 --dofile(mod.modpath .. "/schematics.lua")
 
 local seed = nokore_mapgen.tree_seed
 
 if nokore_mapgen.enable_trees then
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_tree_birch:birch_tree",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},
@@ -32,7 +37,7 @@ if nokore_mapgen.enable_trees then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_tree_birch:small_birch_tree",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},

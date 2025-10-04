@@ -4,7 +4,12 @@
 -- This module adds the desert biome(s)
 foundation.new_module("nokore_biome_desert", "0.1.0")
 
-minetest.register_biome({
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
+core.register_biome({
   name = "desert",
   node_top = "nokore_world_standard:desert_sand",
   depth_top = 1,
@@ -21,7 +26,7 @@ minetest.register_biome({
   humidity_point = 16,
 })
 
-minetest.register_biome({
+core.register_biome({
   name = "sandstone_desert",
   node_top = "nokore_world_standard:sand",
   depth_top = 1,
@@ -38,7 +43,7 @@ minetest.register_biome({
   humidity_point = 0,
 })
 
-minetest.register_biome({
+core.register_biome({
   name = "cold_desert",
   node_top = "nokore_world_standard:silver_sand",
   depth_top = 1,
@@ -56,7 +61,7 @@ minetest.register_biome({
 })
 
 if foundation.is_module_present("nokore_world_water") then
-  minetest.register_biome({
+  core.register_biome({
     name = "desert_ocean",
     node_top = "nokore_world_standard:sand",
     depth_top = 1,
@@ -75,7 +80,7 @@ if foundation.is_module_present("nokore_world_water") then
     humidity_point = 16,
   })
 
-  minetest.register_biome({
+  core.register_biome({
     name = "sandstone_desert_ocean",
     node_top = "nokore_world_standard:sand",
     depth_top = 1,
@@ -93,7 +98,7 @@ if foundation.is_module_present("nokore_world_water") then
     humidity_point = 0,
   })
 
-  minetest.register_biome({
+  core.register_biome({
     name = "cold_desert_ocean",
     node_top = "nokore_world_standard:sand",
     depth_top = 1,

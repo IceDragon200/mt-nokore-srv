@@ -4,7 +4,12 @@
 -- This module adds the savanna biome(s)
 foundation.new_module("nokore_biome_savanna", "0.1.0")
 
-minetest.register_biome({
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
+core.register_biome({
   name = "savanna",
   node_top = "nokore_world_standard:dry_dirt_with_dry_grass",
   depth_top = 1,
@@ -21,7 +26,7 @@ minetest.register_biome({
   humidity_point = 42,
 })
 
-minetest.register_biome({
+core.register_biome({
   name = "savanna_shore",
   node_top = "nokore_world_standard:dry_dirt",
   depth_top = 1,
@@ -39,7 +44,7 @@ minetest.register_biome({
 })
 
 if foundation.is_module_present("nokore_world_water") then
-  minetest.register_biome({
+  core.register_biome({
     name = "savanna_ocean",
     node_top = "nokore_world_standard:sand",
     depth_top = 1,
@@ -61,7 +66,7 @@ end
 
 if foundation.is_module_present("nokore_world_water") and
    foundation.is_module_present("nokore_world_lava") then
-  minetest.register_biome({
+  core.register_biome({
     name = "savanna_under",
     node_cave_liquid = {
       "nokore_world_water:fresh_water_source",
@@ -77,7 +82,7 @@ if foundation.is_module_present("nokore_world_water") and
   })
 end
 
-minetest.register_decoration({
+core.register_decoration({
   deco_type = "simple",
   place_on = {"nokore_world_standard:dry_dirt_with_dry_grass"},
   sidelen = 4,

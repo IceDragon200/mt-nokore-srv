@@ -11,7 +11,7 @@ if nokore_mapgen.enable_giant_mushrooms then
   --
   -- Blue Caps
   --
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_giant_mushroom:blue_cap_mushroom_small",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},
@@ -32,7 +32,7 @@ if nokore_mapgen.enable_giant_mushrooms then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_giant_mushroom:blue_cap_mushroom_normal",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},
@@ -53,7 +53,7 @@ if nokore_mapgen.enable_giant_mushrooms then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_giant_mushroom:blue_cap_mushroom_large",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},
@@ -77,7 +77,7 @@ if nokore_mapgen.enable_giant_mushrooms then
   --
   -- Brown Caps
   --
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_giant_mushroom:brown_cap_mushroom_small",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},
@@ -98,7 +98,7 @@ if nokore_mapgen.enable_giant_mushrooms then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_giant_mushroom:brown_cap_mushroom_normal",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},
@@ -119,7 +119,7 @@ if nokore_mapgen.enable_giant_mushrooms then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_giant_mushroom:brown_cap_mushroom_large",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},
@@ -143,7 +143,7 @@ if nokore_mapgen.enable_giant_mushrooms then
   --
   -- Purple Caps
   --
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_giant_mushroom:purple_cap_mushroom_small",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},
@@ -164,7 +164,7 @@ if nokore_mapgen.enable_giant_mushrooms then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_giant_mushroom:purple_cap_mushroom_normal",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},
@@ -185,7 +185,7 @@ if nokore_mapgen.enable_giant_mushrooms then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_giant_mushroom:purple_cap_mushroom_large",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},
@@ -209,7 +209,7 @@ if nokore_mapgen.enable_giant_mushrooms then
   --
   -- Red Caps
   --
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_giant_mushroom:red_cap_mushroom_small",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},
@@ -230,7 +230,7 @@ if nokore_mapgen.enable_giant_mushrooms then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_giant_mushroom:red_cap_mushroom_normal",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},
@@ -251,7 +251,7 @@ if nokore_mapgen.enable_giant_mushrooms then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_giant_mushroom:red_cap_mushroom_large",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},

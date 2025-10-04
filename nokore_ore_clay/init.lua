@@ -4,7 +4,12 @@
 -- Adds clay ores to the world gen
 foundation.new_module("nokore_ore_clay", "0.1.0")
 
-minetest.register_ore({
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
+core.register_ore({
   ore_type        = "blob",
   ore             = "nokore_world_clay:block",
   wherein         = {"nokore_world_standard:sand"},

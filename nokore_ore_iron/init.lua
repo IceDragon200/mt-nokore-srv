@@ -4,7 +4,12 @@
 -- Adds iron ores to the world gen
 foundation.new_module("nokore_ore_iron", "0.1.0")
 
-minetest.register_ore({
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
+core.register_ore({
   ore_type       = "scatter",
   ore            = "nokore_world_iron:stone_with_iron",
   wherein        = "nokore_world_standard:stone",
@@ -15,7 +20,7 @@ minetest.register_ore({
   y_min          = 1025,
 })
 
-minetest.register_ore({
+core.register_ore({
   ore_type       = "scatter",
   ore            = "nokore_world_iron:stone_with_iron",
   wherein        = "nokore_world_standard:stone",
@@ -26,7 +31,7 @@ minetest.register_ore({
   y_min          = -255,
 })
 
-minetest.register_ore({
+core.register_ore({
   ore_type       = "scatter",
   ore            = "nokore_world_iron:stone_with_iron",
   wherein        = "nokore_world_standard:stone",

@@ -3,11 +3,16 @@
 --
 local mod = foundation.new_module("nokore_mapgen_decor_tree_big_oak", "0.1.0")
 
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
 local seed = nokore_mapgen.tree_seed
 --dofile(mod.modpath .. "/schematics.lua")
 
 if nokore_mapgen.enable_trees then
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_tree_big_oak:big_oak_tree",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_grass"},

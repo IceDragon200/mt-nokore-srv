@@ -4,6 +4,11 @@
 -- This module adds the coniferous forest biome(s)
 foundation.new_module("nokore_biome_coniferous_forest", "0.1.0")
 
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
 core.register_biome({
   name = "coniferous_forest",
   node_top = "nokore_world_standard:dirt_with_coniferous_litter",

@@ -3,13 +3,18 @@
 --
 local mod = foundation.new_module("nokore_mapgen_decor_tree_jungle", "0.1.0")
 
+if nokore.game_id == "default" then
+  -- skip for MTG
+  return
+end
+
 --dofile(mod.modpath .. "/schematics.lua")
 
 local seed = nokore_mapgen.tree_seed
 
 if nokore_mapgen.enable_trees then
   -- Jungle tree and log
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_tree_jungle:jungle_tree",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_rainforest_litter"},
@@ -26,7 +31,7 @@ if nokore_mapgen.enable_trees then
   })
 
   -- Swamp jungle trees
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_tree_jungle:jungle_tree(swamp)",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt"},
@@ -48,7 +53,7 @@ if nokore_mapgen.enable_trees then
     rotation = "random",
   })
 
-  minetest.register_decoration({
+  core.register_decoration({
     name = "nokore_mapgen_decor_tree_jungle:jungle_log",
     deco_type = "schematic",
     place_on = {"nokore_world_standard:dirt_with_rainforest_litter"},

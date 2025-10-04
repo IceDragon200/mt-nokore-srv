@@ -1,5 +1,7 @@
 # NoKore Common
 
+Common module for NoKore mods.
+
 ## API
 
 ```lua
