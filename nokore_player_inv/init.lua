@@ -6,7 +6,7 @@
 -- mods for messing with the player inventory (and creative inventory)
 --
 -- You may recognize this is similar to sfinv, and you'd be kind of right.
-local mod = foundation.new_module("nokore_player_inv", "0.5.0")
+local mod = foundation.new_module("nokore_player_inv", "0.6.0")
 
 local fspec = assert(foundation.com.formspec.api)
 
@@ -55,10 +55,15 @@ core.register_on_player_receive_fields(function (player, form_name, fields)
   end
 end)
 
-local function on_player_join(player)
-  player:hud_set_hotbar_image("gui_hotbar_base.png")
-  player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
+--- @overridable
+--- @spec set_hud_images(player: PlayerRef): void
+function mod.set_hud_images(player)
+  -- player:hud_set_hotbar_image("gui_hotbar_base.png")
+  -- player:hud_set_hotbar_selected_image("gui_hotbar_selected.png")
+end
 
+local function on_player_join(player)
+  mod.set_hud_images(player)
   player:hud_set_hotbar_itemcount(mod.player_hotbar_size)
 end
 

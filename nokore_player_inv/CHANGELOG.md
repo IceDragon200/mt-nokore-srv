@@ -1,3 +1,7 @@
+# 0.6.0
+
+* Added `nokore_player_inv.set_hud_images/1` callback for overriding the hud behaviour
+
 # 0.5.0
 
 * Added new system for updating hotbar items, you may add a `on_inventory_tick/3` function to items to have them respond to changes, see [API](API.md) for more details.
