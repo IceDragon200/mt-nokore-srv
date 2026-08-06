@@ -1,3 +1,7 @@
+# `2.0.0`
+
+* No actual changes, but rather a WARNING that the underlying persistence systems have changed.
+
 # `1.3.0`
 
 * PlayerDataService must now be created with its root_path set in its new options parameter.

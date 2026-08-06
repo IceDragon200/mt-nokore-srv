@@ -10,7 +10,7 @@ To get started register a domain (acts like a namespace) for your data.
 nokore.player_data_service:register_domain("my_domain_name", {
   -- Choose a persistence method:
   -- * `apack` using foundation_ascii_pack
-  -- * `marshall` using foundation_binary's MarshallValue
+  -- * `marshall` using foundation_binary's MarshallValue (can read V1, but will write V2)
   -- * `json` using minetest's built-in json functions (disabled, due to empty table bug)
   -- * `serialize` using minetest's serialize|deserialize functions
   -- * `none` to not load or save data
@@ -50,3 +50,9 @@ nokore.player_data_service:with_player_domain_kv(player_name, domain_name, funct
   return true
 end)
 ```
+
+## Persistence
+
+`marshall` uses foundation_binary's MarshallValue to write the data, however, `nokore_player_data` itself uses `nokore_game_data` which changed its implementation to align with the new calling conventions of foundation_binary, as a result, `marshall` actually refers to MarshallValue.V2 on write, v1 files can still be read, but they will be persisted as v2.
+
+The formats are completely INCOMPATIBLE so never attempt to load a v2 file with v1 (KVStore will error if given a version it doesn't recognize, so older versions will refuse to load newer ones).

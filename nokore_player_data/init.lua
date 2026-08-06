@@ -6,7 +6,7 @@
 -- store additional data on a player.
 --
 -- Mods that need their own domain/namespace must register it with this mod's service.
-local mod = foundation.new_module("nokore_player_data", "1.3.0")
+local mod = foundation.new_module("nokore_player_data", "2.0.0")
 
 local path_join = assert(foundation.com.path_join)
 
