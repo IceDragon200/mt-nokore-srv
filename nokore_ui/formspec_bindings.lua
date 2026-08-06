@@ -201,14 +201,14 @@ do
     local player_name = player:get_player_name()
     local forms = self.player_to_forms[player_name]
     if not forms then
-      core_log("warning", "there are no known forms bound for player (wanted form_name=" .. form_name .. ")")
+      core_log("warning", "nokore_ui: there are no known forms bound for player (wanted form_name=" .. form_name .. ")")
       -- the player had no forms bound at the moment, let some other receive fields handle it
       return false
     end
 
     local form = forms[form_name]
     if not form then
-      core_log("warning", "specified form is not bound for player=" .. player_name .. "(wanted form_name="..form_name .. ")")
+      core_log("warning", "nokore_ui: specified form is not bound for player=" .. player_name .. "(wanted form_name="..form_name .. ")")
       -- the specified form for the player was not bound, let some other receive fields handle it
       return false
     end
