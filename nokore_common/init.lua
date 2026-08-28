@@ -2,10 +2,12 @@
 -- Initialize the default make_tool_* functions
 -- When using nokore in a modpack or game, it's best to define these functions in the nokore_prelude
 --
-local mod = foundation.new_module("nokore_common", "1.0.0")
+local mod = foundation.new_module("nokore_common", "1.1.0")
 
 --- @namespace nokore
 nokore = rawget(_G, "nokore") or {}
+
+mod:require("api.lua")
 
 if not nokore.game_id then
   core.log("warning", "detecting game environment, if this is incorrect, please create a nokore_prelude with nokore.game_id set to your appropriate game value: (default, hsw)")

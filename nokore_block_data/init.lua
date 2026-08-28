@@ -4,7 +4,7 @@
 -- A service mod that watches players on the map and determines which blocks are loaded
 -- all while providing a metadata table via game data's KeyValueStore
 --
-local mod = foundation.new_module("nokore_block_data", "1.3.0")
+local mod = foundation.new_module("nokore_block_data", "1.4.0")
 
 mod:require("service.lua")
 
@@ -18,11 +18,15 @@ if foundation.is_module_present("nokore_player_service") then
     nokore.block_data_service:method("on_player_leave")
   )
 else
-  minetest.register_on_leaveplayer(nokore.block_data_service:method("on_player_leave"))
+  core.register_on_leaveplayer(nokore.block_data_service:method("on_player_leave"))
 end
 
 nokore_proxy.register_globalstep(
   "nokore_block_data.update/1",
   nokore.block_data_service:method("update")
 )
-minetest.register_on_shutdown(nokore.block_data_service:method("terminate"))
+core.register_on_shutdown(nokore.block_data_service:method("terminate"))
+
+if foundation.com.Luna then
+  mod:require("tests.lua")
+end
