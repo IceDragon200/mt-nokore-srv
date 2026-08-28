@@ -100,9 +100,9 @@ do
       node.param2 = original_node.param2
     end
 
-    minetest.add_node(pos, node)
+    core.add_node(pos, node)
 
-    local meta = minetest.get_meta(pos)
+    local meta = core.get_meta(pos)
 
     local inv = meta:get_inventory()
 

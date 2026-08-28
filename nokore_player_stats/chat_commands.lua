@@ -2,7 +2,7 @@ local mod = nokore_player_stats
 local player_stats = assert(nokore.player_stats)
 local player_service = assert(nokore.player_service)
 
-minetest.register_chatcommand("my_stats", {
+core.register_chatcommand("my_stats", {
   description = mod.S("Shows all stats for current player"),
 
   func = function (caller)

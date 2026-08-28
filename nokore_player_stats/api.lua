@@ -12,8 +12,11 @@ local Stat = foundation.com.Class:extends("nokore.player_stats.Stat")
 do
   local ic = Stat.instance_class
 
+  --- @override
   --- @spec #initialize(Table): void
   function ic:initialize(def)
+    ic._super.initialize(self)
+
     --- @member calc: Function/2
     self.calc = assert(def.calc)
 
