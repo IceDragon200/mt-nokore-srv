@@ -173,9 +173,23 @@ do
     })
   end
 
+  --- Triggers expiration renewal on the node data, nodes should ocassionally
+  --- issue a ping to keep this data alive.
+  ---
+  --- @spec ping_node_data(pos: Vector3): Boolean
+  function ic:ping_node_data(pos)
+    local id = hash_node_position(pos)
+    local node_data = self.nodes[id]
+    if node_data then
+      self:refresh_node_data_expiration(node_data)
+      return true
+    end
+    return false
+  end
+
   --- @spec #new_node_data(pos: Vector3, secret: String): NodeData
   function ic:new_node_data(pos, secret)
-    local basename = ""
+    local basename = "("..pos.x..","..pos.y..","..pos.z..")"
     local kv = KVStore:new()
     local id = hash_node_position(pos)
     kv:put("__secret", secret)
@@ -257,15 +271,22 @@ do
     end
   end
 
-  --- Triggers expiration renewal on the node data, nodes should ocassionally
-  --- issue a ping to keep this data alive.
-  ---
-  --- @spec ping_node_data(pos: Vector3): Boolean
-  function ic:ping_node_data(pos)
+  --- Removes and deletes node_data at specified position, with optional secret.
+  --- @spec #destroy_node_data(pos: Vector3, secret?: String): Boolean
+  function ic:destroy_node_data(pos, secret)
     local id = hash_node_position(pos)
     local node_data = self.nodes[id]
     if node_data then
-      self:refresh_node_data_expiration(node_data)
+      if secret then
+        if node_data.secret ~= secret then
+          return false
+        end
+      end
+
+      if node_data.filename then
+        os.remove(node_data.filename)
+      end
+      self.nodes[id] = nil
       return true
     end
     return false
@@ -286,8 +307,8 @@ do
     local kv = node.kv
     -- in case someone deleted the node dir during runtime, this covers it up
     -- hopefully the engine is doing this efficiently.
-    core.mkdir(self.node_data_dir)
     if kv.dirty then
+      core.mkdir(self.node_data_dir)
       kv.dirty = false
       if self.persistence_type == "MRSH" then
         kv:marshall_dump_file(node.filename, trace)
