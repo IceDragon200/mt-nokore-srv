@@ -83,8 +83,11 @@ do
   ---
   --- @spec #put(key: String, Value): self
   function ic:put(key, value)
-    self.data[key] = value
-    self.dirty = true
+    local old_value = self.data[key]
+    if old_value ~= value then
+      self.data[key] = value
+      self.dirty = true
+    end
     return self
   end
 
@@ -115,10 +118,14 @@ do
   --- @since "0.7.0"
   --- @spec #put_all(Table): self
   function ic:put_all(tab)
+    local old_value
     for key, value in pairs(tab) do
-      self.data[key] = value
+      old_value = self.data[key]
+      if old_value ~= value then
+        self.data[key] = value
+        self.dirty = true
+      end
     end
-    self.dirty = true
     return self
   end
 
@@ -133,8 +140,11 @@ do
   ---
   --- @spec #upsert_lazy(String, Function/1): self
   function ic:upsert_lazy(key, callback)
+    local old_value = self.data[key]
     self.data[key] = callback(self.data[key])
-    self.dirty = true
+    if old_value ~= self.data[key] then
+      self.dirty = true
+    end
     return self
   end
 
@@ -149,9 +159,12 @@ do
   ---
   --- @spec #update_lazy(String, Function/1): self
   function ic:update_lazy(key, callback)
-    if self.data[key] ~= nil then
+    local old_value = self.data[key]
+    if old_value ~= nil then
       self.data[key] = callback(self.data[key])
-      self.dirty = true
+      if old_value ~= self.data[key] then
+        self.dirty = true
+      end
     end
     return self
   end
@@ -182,8 +195,10 @@ do
 
   --- @spec #delete(String): self
   function ic:delete(key)
-    self.data[key] = nil
-    self.dirty = true
+    if self.data[key] ~= nil then
+      self.data[key] = nil
+      self.dirty = true
+    end
     return self
   end
 end

@@ -19,6 +19,7 @@ if ascii_file_pack and ascii_file_unpack then
     end
   end
 
+  --- @spec #apack_dump(stream: Stream): Number
   function ic:apack_dump(stream)
     local bytes_written = 0
     local bw, err
@@ -63,6 +64,7 @@ if ascii_file_pack and ascii_file_unpack then
     return bytes_written
   end
 
+  --- @spec #apack_load(stream: Stream): (self, bytes_read: Number)
   function ic:apack_load(stream)
     local bytes_read = 0
     local br

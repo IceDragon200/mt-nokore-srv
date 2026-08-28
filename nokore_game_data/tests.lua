@@ -7,7 +7,7 @@ local ascii_file_unpack = foundation.com.ascii_file_unpack
 
 local MarshallValue = foundation.com.binary_types and foundation.com.binary_types.MarshallValue
 
-local StringBuffer = foundation.com.StringBuffer
+local StringBuffer = assert(foundation.com.StringBuffer)
 
 local case = Luna:new("nokore_game_data.KVStore")
 
@@ -29,7 +29,7 @@ local METHODS = {
     dump_file = "marshall_dump_file",
   },
   -- {
-  --   enabled = minetest.write_json and minetest.parse_json,
+  --   enabled = core.write_json and core.parse_json,
   --   uses_stream = false,
   --   load = "json_load",
   --   dump = "json_dump",
@@ -37,7 +37,7 @@ local METHODS = {
   --   dump_file = "json_dump_file",
   -- },
   {
-    enabled = minetest.serialize and minetest.deserialize,
+    enabled = core.serialize and core.deserialize,
     uses_stream = false,
     load = "deserialize_load",
     dump = "serialize_dump",
@@ -127,19 +127,22 @@ for _, def in ipairs(METHODS) do
       end)
     end)
   else
-    minetest.log("warning", desc .. " unavailable")
+    core.log("warning", desc .. " unavailable")
   end
 
   if def.enabled then
     case:describe(file_desc, function (t2)
-      local test_filename = minetest.get_worldpath() .. "/tmp/nokore_game_data_kv_test.blob"
+      local test_filename = foundation.com.path_join(core.get_worldpath(), "tmp/nokore_game_data_kv_test.blob")
 
       t2:test("can handle serializing an empty key value store", function (t3)
         local kv = KVStore:new()
 
         t3:refute(kv:get("key"))
 
-        kv[def.dump_file](kv, test_filename)
+        local bw, err = kv[def.dump_file](kv, test_filename)
+        if err then
+          error(err)
+        end
 
         -- create a new key value store
         local new_kv = KVStore:new()
@@ -165,7 +168,13 @@ for _, def in ipairs(METHODS) do
         kv:put("table_array", {1, 2, 3})
         kv:put("table_map", { a = 1, b = 2, c = 3 })
 
-        kv[def.dump_file](kv, test_filename)
+        local bw
+        local err
+        bw, err = kv[def.dump_file](kv, test_filename)
+
+        if err then
+          error(err)
+        end
 
         -- create a new key value store
         local new_kv = KVStore:new()
@@ -184,7 +193,7 @@ for _, def in ipairs(METHODS) do
       end)
     end)
   else
-    minetest.log("warning", file_desc .. " unavailable")
+    core.log("warning", file_desc .. " unavailable")
   end
 end
 
