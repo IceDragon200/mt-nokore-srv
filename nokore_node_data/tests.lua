@@ -45,14 +45,18 @@ case:describe("#request_node_data/2", function (t2)
     local m = M:new({
       world_path = world_path,
     })
-    local okay, node_data = m:request_node_data(vector.new(0, 0, 0), "my_secret")
+    local pos = vector.new(0, 0, 0)
+    local okay, node_data = m:request_node_data(pos, "my_secret")
     t3:assert_eq(true, okay)
     t3:assert(node_data)
 
     -- Cannot request it again with a different secret
-    okay, node_data = m:request_node_data(vector.new(0, 0, 0), "my_secret2")
+    okay, node_data = m:request_node_data(pos, "my_secret2")
     t3:assert_eq(false, okay)
     t3:refute(node_data)
+
+    okay = m:destroy_node_data(pos)
+    t3:assert_eq(true, okay)
   end)
 end)
 
