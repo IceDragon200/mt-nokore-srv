@@ -1,3 +1,6 @@
+--- SPDX-License-Identifier: Apache-2.0
+--- SPDX-FileCopyrightText: 2026 druid.space
+
 local path_dirname = assert(foundation.com.path_dirname)
 local Buffer = assert(foundation.com.BinaryBuffer or foundation.com.StringBuffer,
                       "expected some kind of buffer")
@@ -25,6 +28,7 @@ do
     local marshall_v1 = MarshallValueV1:new()
     local marshall_v2 = MarshallValueV2:new()
 
+    --- @spec #marshall_dump(stream: Stream): (bytes_written: Integer, error: Any)
     function ic:marshall_dump(stream)
       local bytes_written = 0
       local bw, err
@@ -71,6 +75,7 @@ do
       return bytes_written, err
     end
 
+    --- @spec marshall_load(stream: Stream): (self, Integer)
     function ic:marshall_load(stream)
       local bytes_read = 0
       local br
@@ -125,6 +130,7 @@ do
       return self, bytes_read
     end
 
+    --- @spec marshall_dump_file(filename: String, trace: Trace): Boolean
     function ic:marshall_dump_file(filename, trace)
       --print("marshall_dump_file", filename)
       local span
@@ -156,6 +162,7 @@ do
       return true
     end
 
+    --- @spec marshall_load_file(filename: String): Boolean
     function ic:marshall_load_file(filename)
       --print("marshall_load_file", filename)
       local f = io.open(filename, 'r')

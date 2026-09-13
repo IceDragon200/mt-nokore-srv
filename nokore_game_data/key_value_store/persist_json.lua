@@ -1,7 +1,10 @@
+--- SPDX-License-Identifier: Apache-2.0
+--- SPDX-FileCopyrightText: 2026 druid.space
+
 local path_dirname = assert(foundation.com.path_dirname)
 
-local write_json = minetest.write_json
-local parse_json = minetest.parse_json
+local write_json = core.write_json
+local parse_json = core.parse_json
 
 local KVStore = nokore_game_data.KVStore
 local ic = KVStore.instance_class
@@ -32,7 +35,7 @@ if write_json then
     if trace then
       span = trace:span_start("mkdir")
     end
-    success, err = minetest.mkdir(path_dirname(filename))
+    success, err = core.mkdir(path_dirname(filename))
     if span then
       span:span_end()
     end
@@ -53,7 +56,7 @@ if write_json then
     if trace then
       span = trace:span_start("safe_file_write")
     end
-    success, err = minetest.safe_file_write(filename, blob)
+    success, err = core.safe_file_write(filename, blob)
     if span then
       span:span_end()
     end
@@ -61,7 +64,7 @@ if write_json then
     return success, err
   end
 else
-  minetest.log("warning", "json_dump functions are not available for key-value store")
+  core.log("warning", "json_dump functions are not available for key-value store")
 end
 
 if parse_json then
@@ -106,5 +109,5 @@ if parse_json then
     return false
   end
 else
-  minetest.log("warning", "json_load functions are not available for key-value store")
+  core.log("warning", "json_load functions are not available for key-value store")
 end

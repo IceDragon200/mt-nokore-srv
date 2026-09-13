@@ -1,7 +1,10 @@
+--- SPDX-License-Identifier: Apache-2.0
+--- SPDX-FileCopyrightText: 2026 druid.space
+
 local path_dirname = assert(foundation.com.path_dirname)
 
-local serialize = minetest.serialize
-local deserialize = minetest.deserialize
+local serialize = core.serialize
+local deserialize = core.deserialize
 
 local KVStore = nokore_game_data.KVStore
 local ic = KVStore.instance_class
@@ -30,7 +33,7 @@ if serialize then
     if trace then
       span = trace:span_start("mkdir")
     end
-    minetest.mkdir(path_dirname(filename))
+    core.mkdir(path_dirname(filename))
     if span then
       span:span_end()
     end
@@ -47,13 +50,13 @@ if serialize then
     if trace then
       span = trace:span_start("safe_file_write")
     end
-    minetest.safe_file_write(filename, blob)
+    core.safe_file_write(filename, blob)
     if span then
       span:span_end()
     end
   end
 else
-  minetest.log("warning", "serialize_dump functions are not available for key-value store")
+  core.log("warning", "serialize_dump functions are not available for key-value store")
 end
 
 if deserialize then
@@ -93,5 +96,5 @@ if deserialize then
     return false
   end
 else
-  minetest.log("warning", "deserialize_load functions are not available for key-value store")
+  core.log("warning", "deserialize_load functions are not available for key-value store")
 end

@@ -1,3 +1,6 @@
+--- SPDX-License-Identifier: Apache-2.0
+--- SPDX-FileCopyrightText: 2026 druid.space
+
 local path_dirname = assert(foundation.com.path_dirname)
 local Buffer = assert(foundation.com.BinaryBuffer or foundation.com.StringBuffer,
                       "expected some kind of buffer")
@@ -126,7 +129,7 @@ if ascii_file_pack and ascii_file_unpack then
     if trace then
       span = trace:span_start("mkdir")
     end
-    success, err = minetest.mkdir(path_dirname(filename))
+    success, err = core.mkdir(path_dirname(filename))
     if span then
       span:span_end()
     end
@@ -149,7 +152,7 @@ if ascii_file_pack and ascii_file_unpack then
     if trace then
       span = trace:span_start("safe_file_write")
     end
-    success, err = minetest.safe_file_write(filename, buffer:blob())
+    success, err = core.safe_file_write(filename, buffer:blob())
     if span then
       span:span_end()
     end
@@ -168,5 +171,5 @@ if ascii_file_pack and ascii_file_unpack then
     return false
   end
 else
-  minetest.log("warning", "ascii pack functions are not available for key-value store")
+  core.log("warning", "ascii pack functions are not available for key-value store")
 end

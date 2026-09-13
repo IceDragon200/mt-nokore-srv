@@ -1,8 +1,11 @@
+--- SPDX-License-Identifier: Apache-2.0
+--- SPDX-FileCopyrightText: 2026 druid.space
+
 --
 -- NoKore - Game Data
 --
 -- Handful of utility classes and modules for dealing with data persistence
-local mod = foundation.new_module("nokore_game_data", "0.11.0")
+local mod = foundation.new_module("nokore_game_data", "0.12.0")
 
 mod:require("key_value_store.lua")
 mod:require("key_value_store/persist_ascii_pack.lua")
